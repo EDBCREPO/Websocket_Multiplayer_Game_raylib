@@ -20,15 +20,20 @@ namespace rl { namespace game {
             list.push( cli ); auto ID = list.last();
 
             cli.onData([=]( string_t data ){
+                auto msg = regex::format("player_${0}\n${1}",cli.get_fd(),data);
                 for( auto &x: list.data() ){
-                 if( x.get_fd() == cli.get_fd() )
-                   { continue; } x.write( data ); 
+                    if( x.get_fd() == cli.get_fd() )
+                      { continue; } x.write( msg ); 
                 }
             });
 
             cli.onClose([=](){
-                console::log( "Disconnected" );
-                list.erase( ID );
+                auto msg = regex::format("player_${0}",cli.get_fd());
+                console::log( "Disconnected" ); list.erase( ID );
+                for( auto &x: list.data() ){
+                    if( x.get_fd() == cli.get_fd() )
+                      { continue; } x.write( msg ); 
+                }
             });
 
             console::log( "Connected" );

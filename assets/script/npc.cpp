@@ -22,13 +22,6 @@ namespace rl { namespace game {
 
             auto name= string::format( "player_%d", rand()%10000 );
 
-            auto ids = GetScene().GetAttr("onSend")
-            .as<event_t<player_t>>().on([=]( player_t data ){
-                cli.write( regex::format( "${0}\n${1}", name,
-                    string_t( type::cast<char>(&data), sizeof(player_t) )
-                )); 
-            });
-
             cli.onData([=]( string_t data ){
 
                 auto pos = data.find('\n'); if( pos == nullptr )
@@ -42,9 +35,16 @@ namespace rl { namespace game {
 
             });
 
+            auto ids = GetScene().GetAttr("onSend")
+            .as<event_t<player_t>>().on([=]( player_t data ){
+                cli.write( string_t( 
+                    type::cast<char>(&data), 
+                    sizeof(player_t) 
+                )); 
+            });
+
             cli.onClose([=](){
                 console::log( "Disconnected" );
-                obj->list.erase( name );
                 process::clear( ids );
                 process::exit(1);
             });
@@ -55,7 +55,7 @@ namespace rl { namespace game {
     
     /*─······································································─*/
 
-        self->onDraw([=](){ for( auto &x: obj->list.get() ){ 
+        self->onDraw([=](){ for( auto &x: obj->list.get() ){
             auto z = x.second; DrawTexturePro( obj->img, 
               { z.frm.x*16, z.frm.y*16, 16*(z.flip?1.0f:-1.0f), 16 },
               { z.pos.x, z.pos.y, 32, 32 }, { 16, 16 }, 0, z.col
