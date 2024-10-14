@@ -11,7 +11,7 @@ inspred by: [Create your own online multiplayer Game](https://medium.com/@EDBCBl
 ```
 
 # Preview
-[Imagen](https://github.com/user-attachments/assets/609e7346-0be3-4875-a23b-bd9c8ad5ae18)
+[Image](https://github.com/user-attachments/assets/6651229c-5401-411b-b162-089f478dbd84)
 
 # Build & Run
 ```bash
