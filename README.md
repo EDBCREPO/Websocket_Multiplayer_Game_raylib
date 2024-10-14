@@ -2,7 +2,7 @@
 
 This is a simple implementation of a real-time Multiplayer game using C++, raylib and nodepp
 
-inspred by: [Create your own online multiplayer Game](https://medium.com/@EDBCBlog/create-your-own-online-multiplayer-small-fast-and-fun-with-raylib-nodepp-and-websockets-190f5c174094)
+inspired by: [Create your own online multiplayer Game](https://medium.com/@EDBCBlog/create-your-own-online-multiplayer-small-fast-and-fun-with-raylib-nodepp-and-websockets-190f5c174094)
 
 # Dependencies
 ```bash
